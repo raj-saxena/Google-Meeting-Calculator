@@ -1,0 +1,93 @@
+/* ── Google Meeting Cost Calculator – Injected Styles ──────────────────── */
+
+#gmcc-cost-section {
+  margin: 8px 0 4px;
+  padding: 10px 16px 12px;
+  border-top: 1px solid #e0e0e0;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  color: #3c4043;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+/* Header row: icon + title + optional badge */
+.gmcc-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.gmcc-icon {
+  display: flex;
+  align-items: center;
+  color: #1a73e8;
+  flex-shrink: 0;
+}
+
+.gmcc-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+/* "Recurring · weekly" badge */
+.gmcc-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  background: #e8f0fe;
+  color: #1a73e8;
+  margin-left: 2px;
+  white-space: nowrap;
+}
+
+/* Body: meta line + cost rows, indented to align with title */
+.gmcc-body {
+  padding-left: 24px;
+}
+
+/* "N participants × Xh × $Y/person/h" */
+.gmcc-meta {
+  font-size: 11px;
+  color: #5f6368;
+  margin-bottom: 5px;
+}
+
+/* Individual cost row */
+.gmcc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1px 0;
+}
+
+.gmcc-label {
+  color: #5f6368;
+  font-size: 12px;
+}
+
+.gmcc-value {
+  font-weight: 500;
+  font-size: 12px;
+  color: #3c4043;
+}
+
+/* Per-meeting cost: slightly larger and blue */
+.gmcc-primary .gmcc-label {
+  font-size: 13px;
+  color: #3c4043;
+}
+
+.gmcc-highlight {
+  font-size: 14px;
+  color: #1a73e8 !important;
+}
+
+/* Yearly cost: accent red to highlight the big number */
+.gmcc-yearly {
+  color: #c5221f !important;
+}

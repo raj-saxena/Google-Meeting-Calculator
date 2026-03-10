@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "Google Meeting Cost Calculator",
+  "version": "1.0.0",
+  "description": "Calculates the cost of Google Calendar meetings based on number of participants and duration. Shows per-meeting, monthly, and yearly costs directly in the event details popup.",
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "meeting-cost-calculator@raj-saxena.github.io",
+      "strict_min_version": "79.0"
+    }
+  },
+  "permissions": [
+    "storage",
+    "https://calendar.google.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Meeting Cost Calculator Settings",
+    "default_icon": {
+      "48": "icons/icon.svg"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  }
+}

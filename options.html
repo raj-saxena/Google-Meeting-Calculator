@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting Cost Calculator – Settings</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        max-width: 560px;
+        margin: 32px auto;
+        padding: 0 16px 40px;
+        font-family: "Google Sans", Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #3c4043;
+        background: #fff;
+      }
+
+      .page-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #1a73e8;
+      }
+
+      .page-header-icon {
+        width: 40px;
+        height: 40px;
+        background: #1a73e8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a73e8;
+      }
+
+      h1 small {
+        display: block;
+        font-size: 12px;
+        font-weight: 400;
+        color: #5f6368;
+        margin-top: 2px;
+      }
+
+      /* ── Sections ──────────────────────── */
+      section {
+        margin-bottom: 28px;
+      }
+
+      h2 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #3c4043;
+        margin: 0 0 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      /* ── Form rows ─────────────────────── */
+      .field {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+
+      .input-wrapper {
+        display: flex;
+        align-items: center;
+        max-width: 220px;
+        border: 1px solid #dadce0;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: border-color 0.15s;
+      }
+
+      .input-wrapper:focus-within {
+        border-color: #1a73e8;
+        box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.15);
+      }
+
+      .input-prefix {
+        padding: 8px 8px 8px 10px;
+        color: #5f6368;
+        font-size: 14px;
+        background: #f8f9fa;
+        border-right: 1px solid #dadce0;
+      }
+
+      input[type="number"],
+      select {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-family: inherit;
+        color: #3c4043;
+        background: transparent;
+        -moz-appearance: textfield;
+        min-width: 0;
+      }
+
+      select {
+        max-width: 220px;
+        border: 1px solid #dadce0;
+        border-radius: 4px;
+        padding: 8px 10px;
+        display: block;
+        cursor: pointer;
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        opacity: 1;
+      }
+
+      .hint {
+        font-size: 11px;
+        color: #5f6368;
+        margin-top: 4px;
+        line-height: 1.4;
+      }
+
+      /* ── Action bar ────────────────────── */
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      button {
+        padding: 9px 22px;
+        border: none;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+
+      #save-btn {
+        background: #1a73e8;
+        color: #fff;
+      }
+
+      #save-btn:hover {
+        background: #1557b0;
+      }
+
+      #reset-btn {
+        background: transparent;
+        color: #d93025;
+        border: 1px solid #dadce0;
+      }
+
+      #reset-btn:hover {
+        background: #fce8e6;
+        border-color: #d93025;
+      }
+
+      #status {
+        font-size: 12px;
+        min-height: 18px;
+        color: #1e8e3e;
+        margin-left: 4px;
+      }
+
+      #status.error {
+        color: #d93025;
+      }
+
+      /* ── Preview card ──────────────────── */
+      #preview-card {
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 14px 16px;
+        font-size: 13px;
+      }
+
+      #preview-card .preview-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px 0;
+      }
+
+      #preview-card .preview-label {
+        color: #5f6368;
+      }
+
+      #preview-card .preview-value {
+        font-weight: 500;
+        color: #1a73e8;
+      }
+
+      #preview-card .preview-value.yearly {
+        color: #c5221f;
+      }
+
+      #preview-meta {
+        font-size: 11px;
+        color: #5f6368;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-header">
+      <div class="page-header-icon">$</div>
+      <h1>
+        Meeting Cost Calculator
+        <small>Extension Settings</small>
+      </h1>
+    </div>
+
+    <!-- Cost configuration -->
+    <section>
+      <h2>Cost Settings</h2>
+
+      <div class="field">
+        <label for="cost-input">Cost per person per hour</label>
+        <div class="input-wrapper">
+          <span class="input-prefix" id="currency-prefix">$</span>
+          <input
+            type="number"
+            id="cost-input"
+            min="1"
+            max="100000"
+            step="1"
+            placeholder="50"
+            aria-label="Cost per person per hour in USD"
+          />
+        </div>
+        <p class="hint">
+          The hourly cost attributed to each meeting participant. This is
+          typically the average fully-loaded hourly rate of attendees.
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="currency-select">Display currency</label>
+        <select id="currency-select" aria-label="Display currency">
+          <option value="USD">USD – US Dollar ($)</option>
+          <option value="EUR">EUR – Euro (€)</option>
+          <option value="GBP">GBP – British Pound (£)</option>
+          <option value="JPY">JPY – Japanese Yen (¥)</option>
+          <option value="CAD">CAD – Canadian Dollar (CA$)</option>
+          <option value="AUD">AUD – Australian Dollar (A$)</option>
+          <option value="INR">INR – Indian Rupee (₹)</option>
+          <option value="CHF">CHF – Swiss Franc (CHF)</option>
+          <option value="BRL">BRL – Brazilian Real (R$)</option>
+          <option value="MXN">MXN – Mexican Peso (MX$)</option>
+        </select>
+        <p class="hint">Currency used when displaying costs in popups.</p>
+      </div>
+    </section>
+
+    <!-- Live preview -->
+    <section>
+      <h2>Preview</h2>
+      <div id="preview-card" aria-live="polite">
+        <div id="preview-meta"></div>
+        <div class="preview-row">
+          <span class="preview-label">Cost per meeting</span>
+          <span class="preview-value" id="prev-single">—</span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">Monthly (weekly meeting)</span>
+          <span class="preview-value" id="prev-monthly">—</span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">Yearly (weekly meeting)</span>
+          <span class="preview-value yearly" id="prev-yearly">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button id="save-btn">Save settings</button>
+      <button id="reset-btn">Reset to defaults</button>
+      <span id="status" role="status" aria-live="polite"></span>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
