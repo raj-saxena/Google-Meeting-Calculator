@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meeting Cost Calculator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+      background: #fff;
+      color: #202124;
+      width: 280px;
+      padding: 0;
+    }
+
+    .header {
+      background: #1a73e8;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-icon { font-size: 22px; }
+
+    .header-text h1 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .header-text p {
+      font-size: 11px;
+      color: rgba(255,255,255,.8);
+      margin-top: 2px;
+    }
+
+    .body { padding: 16px; }
+
+    .field { margin-bottom: 14px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #5f6368;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-prefix {
+      position: absolute;
+      left: 10px;
+      font-size: 14px;
+      color: #5f6368;
+      pointer-events: none;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 9px 10px 9px 24px;
+      font-size: 14px;
+      font-family: inherit;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      outline: none;
+      color: #202124;
+      background: #fff;
+      transition: border-color .15s;
+      -moz-appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+    input[type="number"]:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 2px rgba(26,115,232,.2);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 9px;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-primary { background: #1a73e8; color: #fff; }
+    .btn-primary:hover { background: #1557b0; }
+
+    .btn-secondary { background: #f1f3f4; color: #1a73e8; }
+    .btn-secondary:hover { background: #e8eaed; }
+
+    .status {
+      font-size: 12px;
+      color: #137333;
+      font-weight: 500;
+      text-align: center;
+      height: 18px;
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .status.visible { opacity: 1; }
+
+    .footer {
+      border-top: 1px solid #dadce0;
+      padding: 10px 16px;
+      text-align: center;
+    }
+
+    .footer a {
+      font-size: 12px;
+      color: #1a73e8;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-icon">💰</div>
+    <div class="header-text">
+      <h1>Meeting Cost Calculator</h1>
+      <p>Google Calendar Enhancement</p>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="field">
+      <label for="rateInput">Cost per person / hour</label>
+      <div class="input-wrapper">
+        <span class="input-prefix">$</span>
+        <input
+          type="number"
+          id="rateInput"
+          min="0"
+          step="0.01"
+          placeholder="50.00"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+      <button class="btn btn-primary" id="saveBtn">Save</button>
+    </div>
+
+    <div class="status" id="status">✓ Saved</div>
+  </div>
+
+  <div class="footer">
+    <a id="optionsLink">Open full settings →</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
